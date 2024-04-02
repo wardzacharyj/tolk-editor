@@ -1,7 +1,15 @@
 {
   "name": "tolk",
   "displayName": "tolk",
-  "description": "",
+  "description": "Plugin for viewing binary files",
+  "author": {
+    "name": "Zachary Ward"
+  },
+  "publisher": "wardzacharyj",
+  "repository": {
+    "url": "https://github.com/wardzacharyj/tolk-editor",
+    "type": "git"
+  },
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.87.0"
