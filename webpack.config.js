@@ -3,6 +3,8 @@
 'use strict';
 
 const path = require('path');
+const copyPlugin = require("copy-webpack-plugin");
+const CopyPlugin = require('copy-webpack-plugin');
 
 //@ts-check
 /** @typedef {import('webpack').Configuration} WebpackConfig **/
@@ -40,6 +42,17 @@ const extensionConfig = {
       }
     ]
   },
+  plugins: [
+    new CopyPlugin({
+      patterns: [
+        { from: "./node_modules/monaco-editor/min/vs", to: "monaco-editor" },
+        { from: "./node_modules/monaco-editor/min/vs/loader.js", to: "monaco-editor" },
+        { from: "./node_modules/monaco-editor/min/vs/editor/editor.main.nls.js", to: "monaco-editor" },
+        { from: "./node_modules/monaco-editor/min/vs/editor/editor.main.js", to: "monaco-editor" },
+        { from: "./node_modules/monaco-editor/min/vs/editor/editor.main.css", to: "monaco-editor" }
+      ],
+    })
+  ],
   devtool: 'nosources-source-map',
   infrastructureLogging: {
     level: "log", // enables logging required for problem matchers

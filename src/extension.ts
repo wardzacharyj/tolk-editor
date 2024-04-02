@@ -102,42 +102,33 @@ class TolkEditorProvider implements vscode.CustomReadonlyEditorProvider<TolkDocu
     async _getHtmlForWebview(webview: vscode.Webview, convertedFileContent: string) {
 
 		// Local path to node_module scrips so the editor can be used in browser
+
 		const requirePaths = webview.asWebviewUri(vscode.Uri.joinPath(this.context.extensionUri,
-			'node_modules',
-			'monaco-editor',
-			'min',
-			'vs',
+			'dist',
+			'monaco-editor'
 		));
 		const loaderPath = webview.asWebviewUri(vscode.Uri.joinPath(this.context.extensionUri,
-			'node_modules',
+			'dist',
 			'monaco-editor',
-			'min',
-			'vs',
 			'loader.js'
 		));
 		const nlsPath = webview.asWebviewUri(vscode.Uri.joinPath(this.context.extensionUri,
-			'node_modules',
+			'dist',
 			'monaco-editor',
-			'min',
-			'vs',
-			'editor',
+			"editor",
 			'editor.main.nls.js'
 		));
 		const mainPath = webview.asWebviewUri(vscode.Uri.joinPath(this.context.extensionUri,
-			'node_modules',
+			'dist',
 			'monaco-editor',
-			'min',
-			'vs',
-			'editor',
+			"editor",
 			'editor.main.js'
 		));
 
 		const cssDataPath = webview.asWebviewUri(vscode.Uri.joinPath(this.context.extensionUri,
-			'node_modules',
+			'dist',
 			'monaco-editor',
-			'min',
-			'vs',
-			'editor',
+			"editor",
 			'editor.main.css'
 		));
 		return `

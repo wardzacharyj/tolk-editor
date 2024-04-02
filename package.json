@@ -109,6 +109,8 @@
     "webpack-cli": "^4.10.0"
   },
   "dependencies": {
-    "monaco-editor": "^0.47.0"
+    "css-loader": "^6.10.0",
+    "monaco-editor": "^0.47.0",
+    "style-loader": "^3.3.4"
   }
 }
