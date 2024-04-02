@@ -1,0 +1,106 @@
+{
+  "name": "tolk",
+  "displayName": "tolk",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.87.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "customEditors": [
+      {
+        "viewType": "tolk.customEditor",
+        "displayName": "Tolk",
+        "selector": [
+          {
+            "filenamePattern": "*"
+          }
+        ],
+        "priority": "option"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Configuration",
+      "properties": {
+        "tolkEditor": {
+          "type": "object",
+          "title": "Tolk Editor Settings",
+          "description": "Contains the required settings for the tolk extension",
+          "properties": {
+            "executablePath": {
+              "type": "string",
+              "description": "The absolute path of the tool or script that will be used to process binary files",
+              "default": ""
+            },
+            "uriSymbol": {
+              "type": "string",
+              "description": "The substring that will be swapped with the binary filename in the provided command string",
+              "default": "${INPUT_FILE}",
+              "examples": [
+                "${INPUT_FILE}"
+              ]
+            },
+            "executableArgs": {
+              "type": "string",
+              "description": "The parameters provided to the executable at the path set by the executablePath property. The output of this command is displayed in the editor",
+              "default": "",
+              "examples": [
+                "-i ${INPUT_FILE} --to-console"
+              ]
+            }
+          },
+          "required": [
+            "executablePath"
+          ],
+          "dependencies": {
+            "command": {
+              "required": [
+                "uriSymbol"
+              ]
+            },
+            "uriSymbol": {
+              "required": [
+                "executableArgs"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.0.0",
+    "@types/mocha": "^10.0.0",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.87.0",
+    "@typescript-eslint/eslint-plugin": "^5.42.0",
+    "@typescript-eslint/parser": "^5.42.0",
+    "@vscode/test-electron": "^2.2.0",
+    "eslint": "^8.26.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.1.0",
+    "ts-loader": "^9.4.1",
+    "typescript": "^4.8.4",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "dependencies": {
+    "monaco-editor": "^0.47.0"
+  }
+}
