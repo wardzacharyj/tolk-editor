@@ -33,8 +33,13 @@ class TolkDocument implements vscode.CustomDocument {
 			: this.uri.fsPath;
 
 		const combinedCommand = `${executablePath} ${argsWithFileUri}`;
-		const { stderr, stdout } = await asyncExec(combinedCommand);
-		return stdout ? stdout : stderr;
+		try {
+			const { stderr, stdout } = await asyncExec(combinedCommand, { maxBuffer: Number.MAX_VALUE });
+			return stdout ? stdout : stderr;
+		}
+		catch (error) {
+			return JSON.stringify(error);
+		}
 	}
 
 	getAssociatedExtension() {
